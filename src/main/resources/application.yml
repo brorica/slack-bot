@@ -1,7 +1,8 @@
-
-
 test:
   base-url: https://slack.com/api/chat.postMessage
+  bearer-token: 토큰토큰
+  channel: bot-error
+  username: ErrorBot
 
 slack:
   base-url: https://slack.com/api/chat.postMessage

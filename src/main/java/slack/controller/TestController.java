@@ -21,7 +21,7 @@ public class TestController {
     @GetMapping("/")
     public ResponseEntity<Void> test() throws Exception {
         slackBotService.send();
-        testService.send();
+//        testService.send();
         return ResponseEntity.ok().build();
     }
 }
