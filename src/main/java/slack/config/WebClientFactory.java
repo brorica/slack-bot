@@ -18,7 +18,10 @@ public class WebClientFactory {
     }
 
     public WebClient getClient(final String baseUrl) {
-        return getClient(baseUrl, "");
+        return WebClient.builder()
+                .baseUrl(baseUrl)
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                .build();
     }
 
     public WebClient getClient(final String baseUrl, final String headers) {

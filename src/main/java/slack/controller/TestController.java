@@ -3,25 +3,30 @@ package slack.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import slack.service.IpAddressService;
 import slack.service.SlackBotService;
-import slack.service.TestService;
 
 @RestController
 public class TestController {
 
     private final SlackBotService slackBotService;
 
-    private final TestService testService;
+    private final IpAddressService ipAddressService;
 
-    public TestController(final SlackBotService slackBotService, final TestService testService) {
+    public TestController(final SlackBotService slackBotService, final IpAddressService ipAddressService) {
         this.slackBotService = slackBotService;
-        this.testService = testService;
+        this.ipAddressService = ipAddressService;
     }
 
     @GetMapping("/")
-    public ResponseEntity<Void> test() throws Exception {
+    public ResponseEntity<Void> slack() {
         slackBotService.send();
-//        testService.send();
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/ip")
+    public ResponseEntity<Void> ipAddress() {
+        ipAddressService.send();
         return ResponseEntity.ok().build();
     }
 }

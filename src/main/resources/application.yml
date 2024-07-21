@@ -5,11 +5,8 @@ webclient:
   read-timeout: 5000
   write-timeout: 5000
 
-test:
-  base-url: https://slack.com/api/chat.postMessage
-  bearer-token: 토큰토큰
-  channel: bot-error
-  username: ErrorBot
+ipAddress:
+  base-url: http://ip.jsontest.com
 
 slack:
   base-url: https://slack.com/api/chat.postMessage

@@ -47,4 +47,26 @@ public class WebClientConfig {
                         .addHandlerLast(new WriteTimeoutHandler(writeTimeout, TimeUnit.MILLISECONDS))
                 );
     }
+
+    /**
+     * 슬랙 전용 WebClient 생성
+     * @param baseUrl 슬랙 api 서버 url
+     * @param authToken 인증 토큰
+     * @return
+     */
+    @Bean(name="slackWebclient")
+    public WebClient getSlackWebclient(@Value("${slack.base-url}") final String baseUrl,
+                                       @Value("${slack.bearer-token}") final String authToken) {
+        return getWebClientFactory().getClient(baseUrl, authToken);
+    }
+
+    /**
+     * ip 조회 전용 WebClient 생성
+     * @param baseUrl api 서버 url
+     * @return
+     */
+    @Bean(name="ipAddressWebClient")
+    public WebClient getIpAddressWebClient(@Value("${ipAddress.base-url}") final String baseUrl) {
+        return getWebClientFactory().getClient(baseUrl);
+    }
 }
