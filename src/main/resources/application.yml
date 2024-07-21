@@ -1,3 +1,10 @@
+webclient:
+  max-connect: 10
+  connection-timeout: 5000
+  response-timeout: 5000
+  read-timeout: 5000
+  write-timeout: 5000
+
 test:
   base-url: https://slack.com/api/chat.postMessage
   bearer-token: 토큰토큰

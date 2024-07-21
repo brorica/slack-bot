@@ -1,36 +1,30 @@
 package slack.service;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+import slack.config.WebClientFactory;
 
 import java.time.Duration;
 
 @Service
 public class SlackBotService {
 
-    private final WebClient webClient;
+    private final WebClientFactory webClientFactory;
 
     @Value("${slack.base-url}")
     private String BASE_URL = "https://slack.com/api/chat.postMessage";
     @Value("${slack.bearer-token}")
-    private String AUTH_TOKEN = "토큰토큰";
+    private String AUTH_TOKEN;
     @Value("${slack.channel}")
     private String CHANNEL;     // 게시할 채널
     @Value("${slack.username}")
     private String USERNAME;    // 슬랙 봇 이름
 
-    public SlackBotService(final WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder
-                .baseUrl(BASE_URL)
-                .defaultHeader(HttpHeaders.AUTHORIZATION, AUTH_TOKEN)
-                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                .build();
+    public SlackBotService(final WebClientFactory webClientFactory) {
+        this.webClientFactory = webClientFactory;
     }
 
     public void send() {
@@ -39,7 +33,7 @@ public class SlackBotService {
         params.set("channel", CHANNEL);
         params.set("username", USERNAME);
 
-        Mono<String> response = webClient
+        Mono<String> response = webClientFactory.getClient(BASE_URL, AUTH_TOKEN)
                 .post()
                 .bodyValue(params)
                 .retrieve()
