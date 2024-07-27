@@ -14,7 +14,10 @@ slack:
   channel: bot-error
   username: ErrorBot
 
-kakao:
+kakaoLogin:
   base-url: https://kauth.kakao.com/oauth/token
   client-id: 토큰토큰
   redirect-uri: http://localhost:3000/login/kakao
+
+kakaoUser:
+  base-url: https://kapi.kakao.com/v2/user/me

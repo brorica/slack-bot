@@ -1,27 +1,38 @@
 package slack.controller.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties
 public class KakaoAuthToken {
 
-    private String token_type;
+    private String tokenType;
 
-    private String access_token;
+    private String accessToken;
 
-    private String id_token;
+    private String idToken;
 
-    private Integer expires_in;
+    private Integer expiresIn;
 
-    private String refresh_token;
+    private String refreshToken;
 
-    private Integer refresh_token_expires_in;
+    private Integer refreshTokenExpiresIn;
 
-    private String scope;
+    public KakaoAuthToken(@JsonProperty("token_type") final String tokenType,
+                          @JsonProperty("access_token") String accessToken,
+                          @JsonProperty("id_token") String idToken,
+                          @JsonProperty("expires_in") Integer expiresIn,
+                          @JsonProperty("refresh_token") String refreshToken,
+                          @JsonProperty("refresh_token_expires_in") Integer refreshTokenExpiresIn) {
+        this.tokenType = tokenType;
+        this.accessToken = accessToken;
+        this.idToken = idToken;
+        this.expiresIn = expiresIn;
+        this.refreshToken = refreshToken;
+        this.refreshTokenExpiresIn = refreshTokenExpiresIn;
+    }
 }

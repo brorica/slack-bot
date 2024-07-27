@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
+import slack.controller.dto.response.KakaoAuthToken;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -74,12 +75,23 @@ public class WebClientConfig {
 
     /**
      * 카카오 로그인 전용 WebClient 생성
-     * {@link slack.service.KakaoLoginService}
+     * {@link slack.service.KakaoLoginService#send(String)}
      * @param baseUrl api 서버 url
      * @return
      */
     @Bean(name="kakaoLoginWebClient")
-    public WebClient getKakaoLoginWebClient(@Value("${kakao.base-url}") final String baseUrl) {
+    public WebClient getKakaoLoginWebClient(@Value("${kakaoLogin.base-url}") final String baseUrl) {
+        return getWebClientFactory().getClient(baseUrl);
+    }
+
+    /**
+     * 카카오 로그인 후 사용자 정보 가져옴
+     * {@link slack.service.KakaoLoginService#getKakaoUserInfo(String)}
+     * @param baseUrl api 서버 url
+     * @return
+     */
+    @Bean(name="kakaoUserWebClient")
+    public WebClient getKakaoUserWebClient(@Value("${kakaoUser.base-url}") final String baseUrl) {
         return getWebClientFactory().getClient(baseUrl);
     }
 }
