@@ -50,6 +50,7 @@ public class WebClientConfig {
 
     /**
      * 슬랙 전용 WebClient 생성
+     * {@link slack.service.SlackBotService}
      * @param baseUrl 슬랙 api 서버 url
      * @param authToken 인증 토큰
      * @return
@@ -62,6 +63,7 @@ public class WebClientConfig {
 
     /**
      * ip 조회 전용 WebClient 생성
+     * {@link slack.service.IpAddressService}
      * @param baseUrl api 서버 url
      * @return
      */

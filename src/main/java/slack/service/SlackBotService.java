@@ -1,15 +1,18 @@
 package slack.service;
 
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 
+@Slf4j
 @Service
 public class SlackBotService {
 
@@ -37,8 +40,8 @@ public class SlackBotService {
          * response 결과를 처리하는 부분
          */
         response.subscribe(
-                result -> System.out.println("Response = " + result),
-                error -> System.err.println("error = " + error)
+                result -> log.info("Response = {}", result),
+                error -> log.error("error = {}", error)
         );
     }
 }
