@@ -7,10 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.time.Duration;
 
 @Slf4j
 @Service
@@ -35,7 +32,7 @@ public class SlackBotService {
                 .post()
                 .bodyValue(params)
                 .retrieve()
-                .bodyToMono(String.class).timeout(Duration.ofMillis(5000));
+                .bodyToMono(String.class);
         /*
          * response 결과를 처리하는 부분
          */

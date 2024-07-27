@@ -13,3 +13,8 @@ slack:
   bearer-token: 토큰토큰
   channel: bot-error
   username: ErrorBot
+
+kakao:
+  base-url: https://kauth.kakao.com/oauth/token
+  client-id: 토큰토큰
+  redirect-uri: http://localhost:3000/login/kakao

@@ -71,4 +71,15 @@ public class WebClientConfig {
     public WebClient getIpAddressWebClient(@Value("${ipAddress.base-url}") final String baseUrl) {
         return getWebClientFactory().getClient(baseUrl);
     }
+
+    /**
+     * 카카오 로그인 전용 WebClient 생성
+     * {@link slack.service.KakaoLoginService}
+     * @param baseUrl api 서버 url
+     * @return
+     */
+    @Bean(name="kakaoLoginWebClient")
+    public WebClient getKakaoLoginWebClient(@Value("${kakao.base-url}") final String baseUrl) {
+        return getWebClientFactory().getClient(baseUrl);
+    }
 }
