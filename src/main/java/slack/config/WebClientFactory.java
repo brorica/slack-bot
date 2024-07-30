@@ -17,17 +17,16 @@ public class WebClientFactory {
         this.connector = connector;
     }
 
-    public WebClient getClient(final String baseUrl) {
+    public WebClient getJsonClient(final String baseUrl) {
         return WebClient.builder()
                 .baseUrl(baseUrl)
-                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
     }
 
-    public WebClient getClient(final String baseUrl, final String headers) {
+    public WebClient getFormClient(final String baseUrl) {
         return WebClient.builder()
                 .baseUrl(baseUrl)
-                .defaultHeader(HttpHeaders.AUTHORIZATION, headers)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
                 .build();
     }

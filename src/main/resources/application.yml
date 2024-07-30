@@ -10,13 +10,13 @@ ipAddress:
 
 slack:
   base-url: https://slack.com/api/chat.postMessage
-  bearer-token: 토큰토큰
+  bearer-token:
   channel: bot-error
   username: ErrorBot
 
 kakaoLogin:
   base-url: https://kauth.kakao.com/oauth/token
-  client-id: 토큰토큰
+  client-id:
   redirect-uri: http://localhost:3000/login/kakao
 
 kakaoUser:

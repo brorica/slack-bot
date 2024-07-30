@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
-import slack.controller.dto.response.KakaoAuthToken;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -57,9 +56,8 @@ public class WebClientConfig {
      * @return
      */
     @Bean(name="slackWebclient")
-    public WebClient getSlackWebclient(@Value("${slack.base-url}") final String baseUrl,
-                                       @Value("${slack.bearer-token}") final String authToken) {
-        return getWebClientFactory().getClient(baseUrl, authToken);
+    public WebClient getSlackWebclient(@Value("${slack.base-url}") final String baseUrl) {
+        return getWebClientFactory().getFormClient(baseUrl);
     }
 
     /**
@@ -70,7 +68,7 @@ public class WebClientConfig {
      */
     @Bean(name="ipAddressWebClient")
     public WebClient getIpAddressWebClient(@Value("${ipAddress.base-url}") final String baseUrl) {
-        return getWebClientFactory().getClient(baseUrl);
+        return getWebClientFactory().getJsonClient(baseUrl);
     }
 
     /**
@@ -81,7 +79,7 @@ public class WebClientConfig {
      */
     @Bean(name="kakaoLoginWebClient")
     public WebClient getKakaoLoginWebClient(@Value("${kakaoLogin.base-url}") final String baseUrl) {
-        return getWebClientFactory().getClient(baseUrl);
+        return getWebClientFactory().getFormClient(baseUrl);
     }
 
     /**
@@ -92,6 +90,6 @@ public class WebClientConfig {
      */
     @Bean(name="kakaoUserWebClient")
     public WebClient getKakaoUserWebClient(@Value("${kakaoUser.base-url}") final String baseUrl) {
-        return getWebClientFactory().getClient(baseUrl);
+        return getWebClientFactory().getFormClient(baseUrl);
     }
 }
