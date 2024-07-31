@@ -3,6 +3,11 @@ package slack.dto;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+/**
+ * GET 요청에 사용될 쿼리 파라미터를 관리하는 곳
+ * @param <K>
+ * @param <V>
+ */
 public class QueryParam<K, V> {
 
     private final MultiValueMap<K, V> queryParamMap;
@@ -15,6 +20,9 @@ public class QueryParam<K, V> {
         queryParamMap = new LinkedMultiValueMap<>(size);
     }
 
+    /**
+     * 쿼리 파라미터 추가
+     */
     public void add(K key, V value) {
         queryParamMap.add(key, value);
     }
