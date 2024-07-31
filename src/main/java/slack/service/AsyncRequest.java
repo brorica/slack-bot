@@ -36,7 +36,7 @@ public abstract class AsyncRequest<T> {
                         .queryParams(queryParam.getQueryParamMap())
                         .build()
                 )
-                .headers(httpHeaders -> headerMap.getHttpHeaders())
+                .headers(httpHeaders -> httpHeaders.addAll(headerMap.getHeaderMap()))
                 .retrieve()
                 .bodyToMono(responseDto);
     }

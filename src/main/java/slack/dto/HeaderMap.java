@@ -25,17 +25,16 @@ public class HeaderMap {
 
     /**
      * 인증 헤더 값 추가
-     * @param value
      */
-    public void addAuthHeader(final String value) {
-        headerMap.add(HttpHeaders.AUTHORIZATION, value);
+    public void setAuthHeader(final String value) {
+        headerMap.set(HttpHeaders.AUTHORIZATION, value);
     }
 
     /**
      * 단일 헤더 값 추가
      */
-    public void add(final String key, final String value) {
-        headerMap.add(key, value);
+    public void set(final String key, final String value) {
+        headerMap.set(key, value);
     }
 
     /**
@@ -52,16 +51,18 @@ public class HeaderMap {
         headerMap.put(key, Arrays.asList(values));
     }
 
+    public List<String> getValue(final String key) {
+        return headerMap.get(key);
+    }
+
     /**
      * WebClient headers 빌더에 사용될 객체로 반환
      * 빈 객체로 반환될시, application/json 이 기본으로 붙는다.
      */
-    public HttpHeaders getHttpHeaders() {
+    public MultiValueMap<String, String> getHeaderMap() {
         if(headerMap.isEmpty()) {
             headerMap.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
         }
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.addAll(headerMap);
-        return httpHeaders;
+        return headerMap;
     }
 }

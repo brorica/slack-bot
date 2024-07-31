@@ -27,6 +27,10 @@ public class QueryParam<K, V> {
         queryParamMap.add(key, value);
     }
 
+    public void set(K key, V value) {
+        queryParamMap.set(key, value);
+    }
+
     public MultiValueMap<K, V> getQueryParamMap() {
         return this.queryParamMap;
     }

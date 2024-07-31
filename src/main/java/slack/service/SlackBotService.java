@@ -28,7 +28,7 @@ public class SlackBotService extends AsyncRequest{
         slackQueryParam.add(TEXT_PARAM, "test");
 
         HeaderMap headerMap = new HeaderMap();
-        headerMap.addAuthHeader(AUTH_TOKEN);
+        headerMap.setAuthHeader(AUTH_TOKEN);
 
         Mono mono = asyncSend(HttpMethod.POST, slackQueryParam, headerMap, String.class);
 
