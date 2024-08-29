@@ -23,11 +23,11 @@ public class QueryParam<K, V> {
     /**
      * 쿼리 파라미터 추가
      */
-    public void add(K key, V value) {
+    public void add(final K key, final V value) {
         queryParamMap.add(key, value);
     }
 
-    public void set(K key, V value) {
+    public void set(final K key, final V value) {
         queryParamMap.set(key, value);
     }
 

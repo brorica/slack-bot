@@ -14,7 +14,7 @@ public abstract class AsyncRequest<T> {
 
     private final WebClient webClient;
 
-    public AsyncRequest(WebClient webClient) {
+    public AsyncRequest(final WebClient webClient) {
         this.webClient = webClient;
     }
 
